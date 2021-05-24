@@ -21,7 +21,7 @@ module Wph
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_adapter = :sidekiq
     # config.active_job.queue_name_prefix = "camelan_#{Rails.env}"
 
     config.generators do |g|

@@ -10,7 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_093104) do
+ActiveRecord::Schema.define(version: 2021_03_08_222418) do
 
+  create_table "bids", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "pet_id", null: false
+    t.float "bid_price"
+    t.float "paid_price"
+    t.integer "order", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_bids_on_pet_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
+  end
+
+  create_table "pets", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.string "notes"
+    t.string "status"
+    t.float "price"
+    t.integer "count", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "mobile", null: false
+    t.string "password_diget", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

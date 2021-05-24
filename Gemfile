@@ -28,20 +28,15 @@ gem 'wisper-activejob', '~> 1.0.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.4.4'
+gem "sqlite3"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-gem 'sidekiq'
 
 gem 'responders', '=3.0.1'
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
 
-gem 'resque', '=2.0.0'
-gem 'rswag', '~> 2.3.1'
 
 gem 'rack-cors', '~> 1.1.0'
 
@@ -90,7 +85,6 @@ group :test do
   gem 'shoulda-matchers', '~> 4.3.0'
   gem 'simplecov', '=0.18.5', require: false
   # DEPRECATED
-  gem 'elasticsearch-extensions'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

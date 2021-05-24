@@ -2,7 +2,6 @@ version: '3.7'
 
 volumes:
   development-database-data-volume:
-  elastic_search:
   rails_cache:
   bundle:
   node_modules:
@@ -34,7 +33,6 @@ services:
     tmpfs:
       - /tmp
     env_file: .env
-    command: sh sleeper.sh elastic_search:9200
     links:
       - camelan_redis
     entrypoint: ["/home/camelan/docker-entrypoint.sh"]
