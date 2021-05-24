@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2021_03_08_222418) do
   create_table "bids", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "pet_id", null: false
+    t.string "user_name"
     t.float "bid_price"
     t.float "paid_price"
     t.integer "order", default: 0

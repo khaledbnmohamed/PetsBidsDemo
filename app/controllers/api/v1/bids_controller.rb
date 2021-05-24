@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Api::V1
   class BidsController < ::Api::BaseController
     before_action :set_pet
@@ -9,7 +7,7 @@ module Api::V1
     # GET /bids
     def index
       bids = @pet.bids
-      render json: BidBlueprint.render(bids)
+      render json: BidBlueprint.render_as_json(bids)
     end
 
     # GET /bids/1
@@ -56,6 +54,7 @@ module Api::V1
     def set_bid
       @bid = @pet.bids.find_by!(number: params[:id])
     end
+    
 
     # Only allow a trusted parameter "white list" through.
     def bid_params

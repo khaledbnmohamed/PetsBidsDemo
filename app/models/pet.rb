@@ -25,6 +25,6 @@ class Pet < ApplicationRecord
 
 
   def finish_auction
-
+    CalculateAuctionResultsService.call(self)
   end
 end

@@ -8,6 +8,7 @@
 #  bid_price  :float
 #  order      :integer          default(0)
 #  paid_price :float
+#  user_name  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  pet_id     :integer          not null
@@ -21,5 +22,12 @@
 class Bid < ApplicationRecord
   belongs_to :pet, inverse_of: :bids
   belongs_to :user, inverse_of: :bids
+
+  before_save :set_user_name
+
+
+  def set_user_name
+    self.user_name = user.name
+  end
 
 end

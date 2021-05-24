@@ -8,6 +8,7 @@
 #  bid_price  :float
 #  order      :integer          default(0)
 #  paid_price :float
+#  user_name  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  pet_id     :integer          not null
