@@ -6,3 +6,7 @@
   development:
     <<: *default
     database: db/development.db
+
+  test:
+    <<: *default
+    database: db/test.db
