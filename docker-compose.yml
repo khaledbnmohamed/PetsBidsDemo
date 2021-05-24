@@ -1,0 +1,84 @@
+version: '3.7'
+
+volumes:
+  development-database-data-volume:
+  elastic_search:
+  rails_cache:
+  bundle:
+  node_modules:
+  packs:
+
+services:
+  camelan: &camelan
+    container_name: camelan
+    hostname: camelan
+    image: camelan
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_USER_ID: ${APP_USER_ID}
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    depends_on:
+      - camelan_development_database
+    volumes:
+      - .:/home/camelan/camelan:cached
+      - ~/.ssh:/home/camelan/.ssh
+      - rails_cache:/home/camelan/camelan/tmp/cache
+      - bundle:/bundle
+      - node_modules:/home/camelan/camelan/node_modules
+      - packs:/home/camelan/camelan/public/packs
+    tmpfs:
+      - /tmp
+    env_file: .env
+    command: sh sleeper.sh elastic_search:9200
+    links:
+      - camelan_redis
+    entrypoint: ["/home/camelan/docker-entrypoint.sh"]
+    # command: ["bundle", "exec", "rails" , "db:create"]
+    # command: ["bundle", "exec", "rails" , "db:migrate"]
+    command: ["bundle", "exec", "rails","server","-b","0.0.0.0","-p","3000"]
+
+
+  # camelan_worker:
+  #   <<: *camelan
+  #   command: bundle exec rake environment resque:work QUEUE=*
+  #   container_name: camelan_worker
+  #   hostname: camelan_worker
+  #   ports: []
+  #   entrypoint: ""
+  #   depends_on:
+  #     - camelan_development_database
+  #     - camelan_test_database
+  #     - camelan_redis
+  #     - camelan
+
+  camelan_development_database: &database
+    image:  mysql:5.7.33
+    #entrypoint: ["sh", "-c", "sleep infinity"]
+
+    environment:
+      MYSQL_ROOT_PASSWORD: camelan
+      MYSQL_DATABASE: camelan_development
+      MYSQL_USER: camelan
+      MYSQL_PASSWORD: camelan
+    container_name: camelan_database_development
+    volumes:
+      - development-database-data-volume:/var/lib/mysql/data
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+
+
+  camelan_redis:
+    container_name: camelan_redis
+    image: redis
+    restart: always
+    ports:
+     - '6379:6379'
+    expose:
+      - '6379'
