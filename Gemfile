@@ -28,15 +28,13 @@ gem 'wisper-activejob', '~> 1.0.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # Use mysql as the database for Active Record
-gem "sqlite3"
+gem 'sqlite3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
-
 gem 'responders', '=3.0.1'
-
-
+gem 'rswag', '~> 2.3.1'
 
 gem 'rack-cors', '~> 1.1.0'
 
@@ -50,7 +48,7 @@ gem 'timecop', '~> 0.9.1'
 gem 'rspec-collection_matchers'
 gem 'rspec-rails'
 
-gem 'whenever' , require: false
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

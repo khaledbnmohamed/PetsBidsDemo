@@ -25,9 +25,7 @@ class Bid < ApplicationRecord
 
   before_save :set_user_name
 
-
   def set_user_name
     self.user_name = user.name
   end
-
 end

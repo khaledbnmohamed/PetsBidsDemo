@@ -19,10 +19,8 @@
 #  index_pets_on_user_id  (user_id)
 #
 class Pet < ApplicationRecord
-
   belongs_to :user, inverse_of: :pets
-  has_many :bids, class_name: "Bid", foreign_key: "pet_id", dependent: :restrict_with_exception, inverse_of: :pet
-
+  has_many :bids, class_name: 'Bid', foreign_key: 'pet_id', dependent: :restrict_with_exception, inverse_of: :pet
 
   def finish_auction
     CalculateAuctionResultsService.call(self)

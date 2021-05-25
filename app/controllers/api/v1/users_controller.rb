@@ -28,9 +28,7 @@ module Api::V1
 
     # PATCH/PUT /users/1
     def update
-      unless @user.update(user_params)
-        raise Errors::CustomError.new(:bad_request, 400, @user.errors.messages)
-      end
+      raise Errors::CustomError.new(:bad_request, 400, @user.errors.messages) unless @user.update(user_params)
 
       render json: UserBlueprint.render(@user)
     end

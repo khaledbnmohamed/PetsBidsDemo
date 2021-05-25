@@ -13,7 +13,6 @@
 #  updated_at     :datetime         not null
 #
 class User < ApplicationRecord
-  has_many :pets, class_name: "Pet", foreign_key: "user_id", dependent: :restrict_with_exception, inverse_of: :user
-  has_many :bids, class_name: "Bid", foreign_key: "user_id", dependent: :restrict_with_exception, inverse_of: :user
-
+  has_many :pets, class_name: 'Pet', foreign_key: 'user_id', dependent: :restrict_with_exception, inverse_of: :user
+  has_many :bids, class_name: 'Bid', foreign_key: 'user_id', dependent: :restrict_with_exception, inverse_of: :user
 end

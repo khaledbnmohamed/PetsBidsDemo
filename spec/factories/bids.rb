@@ -23,6 +23,6 @@ FactoryBot.define do
   factory :bid do
     association :pet
     association :user
-    bid_price { rand(pet.price..pet.price+100) }
+    bid_price { rand(pet.price..pet.price + 100) }
   end
 end

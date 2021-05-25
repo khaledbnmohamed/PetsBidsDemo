@@ -21,7 +21,7 @@
 FactoryBot.define do
   factory :pet do
     name { FFaker::AnimalUS.common_name }
-    status { "in_sale" }
+    status { 'in_sale' }
     notes { FFaker::Lorem.word }
     price { rand(1..10) }
     user

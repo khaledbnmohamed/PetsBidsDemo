@@ -16,7 +16,7 @@ FactoryBot.define do
   factory :user do
     sequence(:name) { |i| "user #{i}" }
     sequence(:email) { |i| "test-user-#{i}@camelan.com" }
-    sequence(:mobile) { "0#{rand(505000000..505999999)}" }
-    password_diget { "QWer12%!" }
+    sequence(:mobile) { "0#{rand(505_000_000..505_999_999)}" }
+    password_diget { 'QWer12%!' }
   end
 end

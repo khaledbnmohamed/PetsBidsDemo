@@ -54,7 +54,6 @@ module Api::V1
     def set_bid
       @bid = @pet.bids.find_by!(number: params[:id])
     end
-    
 
     # Only allow a trusted parameter "white list" through.
     def bid_params
